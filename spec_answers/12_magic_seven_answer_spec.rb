@@ -109,7 +109,7 @@ describe MagicSeven do
     context 'when the random number is 19' do
       subject(:game_nineteen) { described_class.new(19) }
 
-      it 'will always return 7' do
+      it 'alwayses return 7' do
         result = game_nineteen.play
         expect(result).to eq(7)
       end
@@ -118,7 +118,7 @@ describe MagicSeven do
     context 'when the random number is 1001' do
       subject(:game_thousand) { described_class.new(1001) }
 
-      it 'will always return 7' do
+      it 'alwayses return 7' do
         result = game_thousand.play
         expect(result).to eq(7)
       end
@@ -127,7 +127,7 @@ describe MagicSeven do
     context 'when the random number is 987,654,321' do
       subject(:game_huge) { described_class.new(987_654_321) }
 
-      it 'will always return 7' do
+      it 'alwayses return 7' do
         result = game_huge.play
         expect(result).to eq(7)
       end

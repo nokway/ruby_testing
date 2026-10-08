@@ -8,7 +8,7 @@ require_relative '../lib/14_find_number'
 #    instructions to add methods to lib/14_find_number.rb
 
 # This file focuses on test-driven development (TDD). One important
-# TDD technique is using a 'double' for any object outside of the class being
+# TDDO is using a 'double' for any object outside of the class being
 # tested. A 'double' is a generic ruby object that stands in for the real
 # object, like a stunt double.
 
@@ -107,6 +107,7 @@ describe FindNumber do
   # random_number using binary search. Remember the binary search video
   # that you watched in the Computer Science section:
   # https://www.youtube.com/watch?v=T98PIp4omUA
+  #
 
   # The computer will update min and max values to help find the correct number.
 
@@ -114,6 +115,8 @@ describe FindNumber do
     # Create a random_number double called 'number_guessing'. Allow the double
     # to receive 'value' and return the value of 8, in one of the two ways
     # explained above.
+    #
+    let(:number_guessing) { double('number_guessing', value: 8) }
 
     subject(:game_guessing) { described_class.new(0, 9, number_guessing) }
 
@@ -123,7 +126,8 @@ describe FindNumber do
     # It will fail with an undefined method error because you haven't
     # written #make_guess yet!
     context 'when min is 0 and max is 9' do
-      xit 'returns 4' do
+      it 'returns 4' do
+        expect(game_guessing.make_guess).to eq(4)
       end
     end
 
@@ -136,28 +140,39 @@ describe FindNumber do
     # random number double created inside this method's describe block.
 
     context 'when min is 5 and max is 9' do
-      xit 'returns 7' do
+      subject(:game_guessing) { described_class.new(5, 9, number_guessing) }
+      it 'returns 7' do
+        expect(game_guessing.make_guess).to eq(7)
       end
     end
 
     context 'when min is 8 and max is 9' do
-      xit 'returns 8' do
+      subject(:game_guessing) { described_class.new(8, 9, number_guessing) }
+      it 'returns 8' do
+        expect(game_guessing.make_guess).to eq(8)
       end
     end
 
     context 'when min is 0 and max is 3' do
-      xit 'returns 1' do
+      subject(:game_guessing) { described_class.new(0, 3, number_guessing) }
+      it 'returns 1' do
+        expect(game_guessing.make_guess).to eq(1)
       end
     end
 
     context 'when min and max both equal 3' do
-      xit 'returns 3' do
+      subject(:game_guessing) { described_class.new(3, 3, number_guessing) }
+      it 'returns 3' do
+        expect(game_guessing.make_guess).to eq(3)
       end
     end
   end
 
   # ASSIGNMENT: METHOD #2
   describe '#game_over?' do
+    let(:number_over) { double('number_over', value: 8) }
+    subject(:end_game) { described_class.new(0, 9, 2, 2) }
+
     context 'when guess and random_number are equal' do
       # Create another subject and random_number double with meaningful names.
       # The subject will need to specify the number value of @guess.
