@@ -170,8 +170,8 @@ describe FindNumber do
 
   # ASSIGNMENT: METHOD #2
   describe '#game_over?' do
-    let(:number_over) { double('number_over', value: 8) }
-    subject(:end_game) { described_class.new(0, 9, 2, 2) }
+    let(:number_over) { double('random_number', value: 5) }
+    subject(:end_game) { described_class.new(8, 8, number_over, 5) }
 
     context 'when guess and random_number are equal' do
       # Create another subject and random_number double with meaningful names.
@@ -183,7 +183,8 @@ describe FindNumber do
       # the random_number double's value above. Remember that this test will not
       # be able to pass yet because you haven't written the method!
 
-      xit 'is game over' do
+      it 'is game over' do
+        expect(end_game).to be_game_over
       end
     end
 
@@ -194,7 +195,9 @@ describe FindNumber do
     # NOT equal the random_number double's value above.
 
     context 'when guess and random_number are not equal' do
-      xit 'is not game over' do
+      subject(:end_game) { described_class.new(0, 9, number_over, 8) }
+      it 'is not game over' do
+        expect(end_game).not_to be_game_over
       end
     end
   end
