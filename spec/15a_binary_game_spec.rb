@@ -140,7 +140,7 @@ describe BinaryGame do
         max = game_input.instance_variable_get(:@maximum)
         error_message = "Input error! Please enter a number between #{min} or #{max}."
         expect(game_input).to receive(:puts).with(error_message).once
-        game_input.player_input(min, max) 
+        game_input.player_input(min, max)
       end
     end
 
@@ -166,7 +166,6 @@ describe BinaryGame do
   # Create a new instance of BinaryGame and write a test for the following two
   # context blocks.
   describe '#verify_input' do
-
     subject(:game_input) { described_class.new(0, 9) }
     let(:valid_input) { double('player_input', between?: true) }
     let(:invalid_input) { double('player_input', between?: false) }
@@ -176,7 +175,6 @@ describe BinaryGame do
     # NOTE: #verify_input will only return a number if it is between?(min, max)
 
     context 'when given a valid input as argument' do
-
       it 'returns valid input' do
         min = game_input.instance_variable_get(:@minimum)
         max = game_input.instance_variable_get(:@maximum)
@@ -282,11 +280,16 @@ describe BinaryGame do
 
     # Write a test for the following context.
     context 'when game minimum and maximum is 100 and 600' do
-      xit 'returns 9' do
+      subject(:game_sixhundred) { described_class.new(100, 600) }
+      it 'returns 9' do
+        max = game_sixhundred.maximum_guesses
+        expect(max).to eq(9)
       end
     end
   end
 
+  # NOTE: STARt HERE
+  #
   describe '#create_binary_search' do
     # Located inside #play_game (Public Script Method)
     # Method with Outgoing Command -> Test that a message is sent
