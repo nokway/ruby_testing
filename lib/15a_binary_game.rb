@@ -79,6 +79,7 @@ class BinaryGame
     HEREDOC
   end
 
+
   def display_guess(binary_search)
     range = (@minimum..@maximum).to_a
     sleep(2)
