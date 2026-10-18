@@ -360,13 +360,15 @@ describe BinaryGame do
     # This method is both a Command Method and a Script Method. It changes the
     # observable state by incrementing the instance variable @guess_count by one,
     # sends two command messages #make_guess and #update_range to the object
-    # binary_search of class BinarySearch, and sends one command message to `self`
-    #  by calling #display_guess.
+    # binary_search of clkass BinarySearch, and sends one command message to `self`
+    # by calling #display_guess.
 
     # Create a new subject and an instance_double for BinarySearch.
+    let(:search_turn) { instance_double(BinarySearch, min: 1, max: 10, guess: (1 + 10) / 2) }
+    subject(:turn_order) { described_class.new(1, 10, search_turn) }
 
     before do
-      # You'll need to create a few method stubs.
+      allow(turn_order).to receive(:display_guess).with(search_turn)
     end
 
     # Command Method -> Test the change in the observable state
@@ -375,6 +377,8 @@ describe BinaryGame do
 
     # Method with Outgoing Command -> Test that a message is sent
     xit 'sends make_guess' do
+      expect(turn_order).to receive(:make_guess).once
+      turn_order.display_turn_order(search_turn)
     end
 
     # Method with Outgoing Command -> Test that a message is sent
